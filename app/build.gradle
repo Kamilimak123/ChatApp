@@ -25,11 +25,17 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:9.6.0'
 
-    compile 'com.android.support:design:23.4.0'
+    //noinspection GradleCompatible
+    compile 'com.android.support:design:26.1.0'
     compile 'com.firebaseui:firebase-ui:0.6.0'
     //testImplementation 'junit:junit:4.12'
     //androidTestImplementation 'com.android.support.test:runner:1.0.1'
     //androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //testCompile 'junit:junit:4.12'
+    //testCompile 'org.junit.jupiter:junit-jupiter-api'
+    //testCompile 'junit:junit:4.12'
+    compile 'com.android.support:support-vector-drawable:26.1.0'
+    compile 'com.android.support:support-annotations:27.1.0'
 }
 
 
