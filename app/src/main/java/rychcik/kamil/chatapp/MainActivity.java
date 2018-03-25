@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseListAdapter<ChatMessage> adapter;
 
+    public String receiver = "all";
+
     public int SIGN_IN_REQUEST_CODE=123;
 
     @Override
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                             .build(),
                     SIGN_IN_REQUEST_CODE
             );
+
+
         } else {
             // User is already signed in. Therefore, display
             // a welcome Toast
@@ -121,17 +125,6 @@ public class MainActivity extends AppCompatActivity {
         listOfMessages.setAdapter(adapter);
         registerForContextMenu(listOfMessages);
 
-//        listOfMessages.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            public void onItemClick(AdapterView<?> parent, View view,
-//                                    int position, long id) {
-//                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-//                String label="Kopiowane";
-//                String text = parent.getItemAtPosition(position).;
-//                ClipData clip = ClipData.newPlainText(label, text);
-//                clipboard.setPrimaryClip(clip);
-//
-//            }});
     }
 
     @Override
@@ -196,6 +189,22 @@ public class MainActivity extends AppCompatActivity {
                         "Pomyślnie zalogowano. Witaj!",
                         Toast.LENGTH_LONG)
                         .show();
+
+                // Check for "." in user email and replace with ","
+                String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+                userEmail = userEmail.replace(".",",");
+                // Check, if user is in our database
+                //if(FirebaseDatabase.getInstance()
+                 //       .getReference().child("Users").child(userEmail)==null)
+                //{
+                // Add user to database
+                FirebaseDatabase.getInstance()
+                        .getReference().child("Users").child(userEmail)
+                        .setValue(new ChatUser(
+                                FirebaseAuth.getInstance().getCurrentUser().getEmail(),
+                                FirebaseAuth.getInstance().getCurrentUser().getDisplayName())
+                        );
+                //}
                 displayChatMessages();
             } else {
                 Toast.makeText(this,
