@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     public ListView listOfMessages;
     private void displayChatMessages() {
         listOfMessages = (ListView)findViewById(R.id.list_of_messages);
-
+        FirebaseMessaging.getInstance().subscribeToTopic("messages");
         adapter = new FirebaseListAdapter<ChatMessage>(this, ChatMessage.class,
                 R.layout.message, FirebaseDatabase.getInstance().getReference().child("Messages")) {
             @Override

@@ -23,8 +23,15 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
+    //noinspection GradleCompatible
     implementation 'com.google.firebase:firebase-core:9.6.0'
 
+    //noinspection GradleCompatible
+    implementation 'com.google.firebase:firebase-messaging:9.6.0'
+    //noinspection GradleCompatible
+    implementation 'com.google.firebase:firebase-auth:9.6.0'
+    //noinspection GradleCompatible
+    implementation 'com.google.firebase:firebase-database:9.6.0'
     //noinspection GradleCompatible
     compile 'com.android.support:design:26.1.0'
     compile 'com.firebaseui:firebase-ui:0.6.0'
